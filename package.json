@@ -1,0 +1,13 @@
+{
+	"name": "Sample-Package",
+	"version": "1.0.0",
+	"description": "Sample package.json",
+	"scripts": {
+		"proxy": "node proxy.js"
+	},
+	"devDependencies": {
+		"proxy": "^2.1.1"
+	},
+	"dependencies": {
+	}
+}
