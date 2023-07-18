@@ -1,7 +1,8 @@
 sap.ui.define([
    "sap/ui/core/UIComponent",
-   "sap/ui/model/json/JSONModel"
-], function (UIComponent, JSONModel) {
+   "sap/ui/model/json/JSONModel",
+   "sap/ui/Device"
+], function (UIComponent, JSONModel, Device) {
    "use strict";
    return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
       metadata : {
@@ -19,6 +20,18 @@ sap.ui.define([
          };
          var oModel = new JSONModel(oData);
          this.setModel(oModel);
-      }
+
+         this.getRouter().initialize();
+      },
+      getContentDensityClass : function () {
+			if (!this._sContentDensityClass) {
+				if (!Device.support.touch) {
+					this._sContentDensityClass = "sapUiSizeCompact";
+				} else {
+					this._sContentDensityClass = "sapUiSizeCozy";
+				}
+			}
+			return this._sContentDensityClass;
+		}
    });
 });

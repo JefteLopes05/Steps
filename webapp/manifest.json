@@ -11,7 +11,7 @@
     },
     "dataSources": {
 			"northwind": {
-				"uri": "http://localhost:5500/https://services.odata.org/V2/Northwind/Northwind.svc/",
+				"uri": "https://cors-anywhere.herokuapp.com/https://services.odata.org/V2/Northwind/Northwind.svc/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0"
@@ -40,6 +40,7 @@
         "sap.m": {}
       }
     },
+    
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
@@ -52,7 +53,38 @@
         }
       },
       "invoice": {
-        "dataSource": "invoiceRemote"
+        "dataSource": "northwind"
+      }
+    },
+    "routing": {
+      "config": {
+      "routerClass": "sap.m.routing.Router",
+      "viewType": "XML",
+      "viewPath": "sap.ui.demo.walkthrough.view",
+      "controlId": "app",
+      "controlAggregation": "pages"
+      },
+      "routes": [
+      {
+        "pattern": "",
+        "name": "overview",
+        "target": "overview"
+      },
+      {
+        "pattern": "detail/{invoicePath}",
+        "name": "detail",
+        "target": "detail"
+      }
+      ],
+      "targets": {
+      "overview": {
+        "viewId": "overview",
+        "viewName": "Overview"
+      },
+      "detail": {
+        "viewId": "detail",
+        "viewName": "Detail"
+      }
       }
     },
     "resources": {
